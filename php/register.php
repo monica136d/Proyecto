@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 // cogemos los datos del formulario
-$email     = trim($_POST['email']     ?? '');
+// el email lo pasamos a minusculas para que da igual como lo escriba el usuario (pepe@gmail.com == Pepe@Gmail.com)
+$email     = strtolower(trim($_POST['email']     ?? ''));
 $usuario   = trim($_POST['usuario']   ?? '');
 $password  = $_POST['password']  ?? '';
 $password2 = $_POST['password2'] ?? '';

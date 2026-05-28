@@ -1,6 +1,7 @@
 <?php
 // borra un usuario desde el panel del admin
-// pero solo si no tiene reservas, asi no dejamos datos sueltos en la base de datos
+// si el usuario tiene reservas, las borramos primero y luego al usuario
+// todo dentro de una transaccion para que o se hace todo o nada
 
 session_start();
 require_once 'db.php';
@@ -14,28 +15,30 @@ if ($id < 1) {
 }
 
 try {
-    // contamos cuantas reservas tiene este usuario
-    $chk = $pdo->prepare(
-        "SELECT COUNT(*) FROM reserva WHERE Id_Usuario = :id"
-    );
-    $chk->execute([':id' => $id]);
-    $total = (int)$chk->fetchColumn();
+    $pdo->beginTransaction();
 
-    // si tiene aunque sea una reserva no lo dejamos borrar
-    if ($total > 0) {
-        echo json_encode([
-            'ok'  => false,
-            'msg' => 'No se puede eliminar: el usuario tiene ' . $total . ' reserva(s) asociada(s)',
-        ]);
+    // primero borramos las reservas del usuario
+    // las FK con ON DELETE CASCADE limpian solas reserva_mesa y reserva_menu
+    $delReservas = $pdo->prepare("DELETE FROM reserva WHERE Id_Usuario = :id");
+    $delReservas->execute([':id' => $id]);
+
+    // ahora ya podemos borrar el usuario (no quedan reservas que lo referencien)
+    $delUsuario = $pdo->prepare("DELETE FROM usuario WHERE Id_Usuario = :id");
+    $delUsuario->execute([':id' => $id]);
+
+    // si no se borro nada es que el id no existia
+    if ($delUsuario->rowCount() === 0) {
+        $pdo->rollBack();
+        echo json_encode(['ok' => false, 'msg' => 'El usuario no existe']);
         exit();
     }
 
-    // si no tiene reservas, lo borramos
-    $del = $pdo->prepare("DELETE FROM usuario WHERE Id_Usuario = :id");
-    $del->execute([':id' => $id]);
-
+    $pdo->commit();
     echo json_encode(['ok' => true]);
 
 } catch (Exception $e) {
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
     echo json_encode(['ok' => false, 'msg' => 'Error de servidor']);
 }

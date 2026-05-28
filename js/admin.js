@@ -377,7 +377,6 @@ document.addEventListener("DOMContentLoaded", function () {
           var obsTxt = (r.Observaciones && String(r.Observaciones).trim()) ? String(r.Observaciones).trim() : "";
           var obsIcon = "";
           if (obsTxt.length > 0) {
-            // TODO: deberiamos hacer un modal en lugar de un alert pero por ahora vale
             obsIcon =
               "<i class='bx bx-message-detail icono-observaciones' onclick='alert(\"" +
               obsTxt.replace(/"/g, "&quot;") +
@@ -406,7 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
               "' data-estado='" +
               (r.Estado || "pendiente") +
               "'></i>" +
-              "<i class='bx bx-x-circle btn-cancelar-reserva icono-rojo-vivo' title='Cancelar' data-id='" +
+              "<i class='bx bx-x-circle btn-cancelar-reserva icono-rojo-vivo' title='Eliminar reserva' data-id='" +
               r.Id_Reserva +
               "'></i>" +
             "</td>";
@@ -540,8 +539,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(function () { mostrarToastAdmin("Error de red."); });
   }
 
-  // cancela una reserva (le pone Estado = cancelada)
+  // elimina una reserva del sistema (DELETE real)
+  // las filas de reserva_mesa y reserva_menu se borran solas por las FK
   function cancelarReserva(idReserva) {
+    if (!confirm("¿Seguro que quieres eliminar esta reserva?")) return;
+
     fetch("../php/cancelarReserva.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -550,10 +552,10 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (data.ok) {
-          mostrarToastAdmin("Reserva cancelada.");
+          mostrarToastAdmin("Reserva eliminada.");
           cargarReservas();
         } else {
-          mostrarToastAdmin(data.msg || "No se pudo cancelar.");
+          mostrarToastAdmin(data.msg || "No se pudo eliminar la reserva.");
         }
       })
       .catch(function () { mostrarToastAdmin("Error de red."); });
@@ -836,8 +838,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(function () { mostrarToastAdmin("Error de red."); });
   });
 
-  // borra un usuario (el php no le deja si tiene reservas asociadas)
+  // borra un usuario y todas sus reservas (DELETE en cascada en el php)
+  // pedimos confirmacion porque el borrado es definitivo
   function eliminarUsuario(id) {
+    if (!confirm("¿Seguro que quieres eliminar este usuario? Se eliminarán también todas sus reservas.")) return;
+
     fetch("../php/eliminarUsuario.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },

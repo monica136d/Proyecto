@@ -1,6 +1,7 @@
 <?php
-// cancela una reserva (no la borra, le pone Estado = cancelada)
-// asi queda en el historial y se puede ver luego
+// elimina una reserva del sistema (DELETE real)
+// las FK con ON DELETE CASCADE limpian solas las filas asociadas
+// en reserva_mesa y reserva_menu, asi no quedan datos sueltos
 
 session_start();
 require_once 'db.php';
@@ -15,11 +16,19 @@ if ($idReserva < 1) {
 }
 
 try {
-    // ponemos el estado a cancelada
-    $up = $pdo->prepare("UPDATE reserva SET Estado = 'cancelada' WHERE Id_Reserva = :id");
-    $up->execute([':id' => $idReserva]);
-    // y lo apuntamos en actividad reciente
-    registrarActividad($pdo, 'reserva_cancelada', 'Reserva #' . $idReserva . ' cancelada');
+    // borramos la reserva. los registros de reserva_mesa y reserva_menu
+    // se borran automaticamente por las FK con ON DELETE CASCADE
+    $del = $pdo->prepare("DELETE FROM reserva WHERE Id_Reserva = :id");
+    $del->execute([':id' => $idReserva]);
+
+    // si no se borro nada es que el id no existia
+    if ($del->rowCount() === 0) {
+        echo json_encode(['ok' => false, 'msg' => 'La reserva no existe']);
+        exit();
+    }
+
+    // lo apuntamos en actividad reciente
+    registrarActividad($pdo, 'reserva_eliminada', 'Reserva #' . $idReserva . ' eliminada');
     echo json_encode(['ok' => true]);
 } catch (Exception $e) {
     echo json_encode(['ok' => false, 'msg' => 'Error de servidor']);

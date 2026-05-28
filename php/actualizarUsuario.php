@@ -9,7 +9,8 @@ header('Content-Type: application/json; charset=utf-8');
 
 $id     = (int)trim($_POST['id_usuario'] ?? 0);
 $nombre = trim($_POST['nombre']          ?? '');
-$email  = trim($_POST['email']           ?? '');
+// el email lo pasamos a minusculas para que sea consistente con el registro
+$email  = strtolower(trim($_POST['email']           ?? ''));
 $rol    = trim($_POST['rol']             ?? '');
 
 // si falta algo no seguimos

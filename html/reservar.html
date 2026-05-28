@@ -88,7 +88,6 @@
                         </div>
                         <div class="form-grupo">
                             <label for="hora">Hora</label>
-                            <!-- TODO: añadir mas horas cuando lo decidan los profes -->
                             <select id="hora" name="hora" required>
                              <option value="" disabled selected>Seleccionar hora</option>
                                 <option value="14:00">14:00 — menú degustación</option>
@@ -136,8 +135,7 @@
                         <i class='bx bx-time'></i>
                         <div>
                             <h4>Horario</h4>
-                            
-                            
+                            <p>Jueves a Domingo: 14:00h.<br>Cerrado: Lunes a Mi&eacute;rcoles.</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -168,5 +166,15 @@
     <script src="../js/reserva-exito.js"></script>
     <script src="../js/reserva-menus.js"></script>
     <script src="../js/reserva-mesas.js"></script>
+
+    <!-- pone como fecha minima la de hoy para que no se puedan reservar dias ya pasados -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputFecha = document.getElementById("fecha");
+            if (inputFecha) {
+                inputFecha.min = new Date().toISOString().split("T")[0];
+            }
+        });
+    </script>
 </body>
 </html>

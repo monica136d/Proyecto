@@ -69,10 +69,8 @@ para probar el login y el panel admin:
 
  Nota:Se piden tres personas/usuarios aqui hay tres:
   uno es el administrador ( el gestor de la pagina) 
-  dos es un usuario logeado ( alguien que esta en la paginacon reserva osi reserva)
-  tres un visitante (alguienque ve , menus interactua por la pagina pero no hace nada mas, es alguien que solo la ve.).
-
-
+  dos es un usuario logeado ( alguien que esta en la pagina con reserva o sin reserva)
+  tres un visitante (alguien que ve , menus interactua por la pagina pero no hace nada mas, es alguien que solo la ve)
 
 
 
