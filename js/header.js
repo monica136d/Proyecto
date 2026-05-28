@@ -25,10 +25,16 @@ else {
 // miramos si estamos en la pagina del admin (para no mostrarle "Admin" otra vez en el menu)
 const enPaginaAdmin = /admin\.html/i.test(location.pathname || "");
 
+// segun si la pagina esta en la raiz (index.html) o dentro de /html/ subimos un nivel o no
+// asi el proyecto funciona aunque la carpeta no se llame "Proyecto"
+var base = location.pathname.includes("/html/") ? "../" : "./";
+
 // pedimos el html del header
-fetch("/Proyecto/html/header.html")
+fetch(base + "html/header.html")
     .then(res => res.text())
     .then(data => {
+        // dentro del header.html los enlaces ponen "BASE/" delante, lo cambiamos por la ruta de verdad
+        data = data.split("BASE/").join(base);
         // lo metemos en el div #header de la pagina
         document.getElementById("header").innerHTML = data;
 
@@ -56,7 +62,7 @@ fetch("/Proyecto/html/header.html")
         const navLogout = document.getElementById("nav-logout");
         const navAdmin = document.getElementById("nav-admin");
         // preguntamos al php si hay sesion activa
-        fetch("/Proyecto/php/comprobar_sesion.php")
+        fetch(base + "php/comprobar_sesion.php")
             .then(res => res.json())
             .then(sess => {
                 const loggedIn = !!sess.loggedIn;

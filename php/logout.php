@@ -3,6 +3,6 @@
 // borramos la sesion y mandamos al inicio
 session_start();
 session_destroy();
-header("Location: /Proyecto/index.html");
+header("Location: ../index.html");
 exit();
 ?>

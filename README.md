@@ -64,6 +64,13 @@ para probar el login y el panel admin:
 |----------------|-------------------|---------------|---------|
 | Administrador  | admin@gmail.com   | [Admin2026!]  | admin   |
 | tomas          | tomas@gmail.com   | [user123]     | cliente |
+| nayra          | nayra@gmail.com   | [user123]     | cliente |
+
+
+ Nota:Se piden tres personas/usuarios aqui hay tres:
+  uno es el administrador ( el gestor de la pagina) 
+  dos es un usuario logeado ( alguien que esta en la paginacon reserva osi reserva)
+  tres un visitante (alguienque ve , menus interactua por la pagina pero no hace nada mas, es alguien que solo la ve.).
 
 
 
@@ -79,20 +86,20 @@ para probar el login y el panel admin:
 - "css/" - Hojas de estilo.
 - "js/" - JavaScript (validaciones, AJAX, panel admin).
 - "php/" - Backend (login, registro, CRUD, sesiones).
-- "assets/" - Imágenes del restaurante y de los menús.
-- "prueba_menu/" - Datos de ejemplo para la defensa (opcional).
-- "menus_no_estaticos/" - Páginas antiguas guardadas como respaldo.
+- "assets/" - Imagenes del restaurante y de los menús.
+- "prueba_menu/" - Datos de ejemplo para la defensa .
+- "menus_no_estaticos/" - Páginas antiguas guardadas , aqui estan los menus antes de ser estaticos.
 
 ## Funcionalidades principales
 
 - Registro y login de usuarios con contraseña encriptada (password_hash).
-- Reservas online con elección de fecha, hora y comensales.
+- Reservas online con elección de fecha, hora y comensales "sale toast".
 - Validación: solo se aceptan reservas de jueves a domingo.
-- Panel de administrador con CRUD de menús, reservas y usuarios.
-- Historial de actividad reciente (quién hizo qué y cuándo).
+- Panel de administrador de menús, reservas y usuarios.
+- Historial de actividad reciente (quién hizo qué y cuándo.Todos los movimientos.).
 - Toasts de confirmación al guardar o registrar.
 
-## Cosas a tener en cuenta que  a veces se olvidan.
+## Cosas a tener en cuenta que  a veces se olvidan  ( aveces a mi).
 
 - El admin necesita estar logueado como rol "admin" para entrar al panel.
 - Si la base de datos no se importa bien, no funcionará el login.

@@ -2,10 +2,16 @@
 // carga el footer compartido (footer.html) y lo mete en el div #footer de cada pagina
 // asi no tenemos que copiar el footer en todos los html
 
+// segun si la pagina esta en la raiz o dentro de /html/ subimos un nivel o no
+// asi funciona aunque la carpeta del proyecto no se llame "Proyecto"
+var base = location.pathname.includes("/html/") ? "../" : "./";
+
 // pedimos el html del footer
-fetch("/Proyecto/html/footer.html")
+fetch(base + "html/footer.html")
     .then(res => res.text())
     .then(data => {
+        // dentro del footer.html los enlaces ponen "BASE/" delante, lo cambiamos por la ruta de verdad
+        data = data.split("BASE/").join(base);
         // lo metemos dentro del div #footer
         document.getElementById("footer").innerHTML = data;
 
