@@ -1,0 +1,255 @@
+/* este css da forma al footer  de todas las páginas */
+:root {
+  /* Colores principales - Solo 4 colores */
+  --negro: #0a0a0b;
+  --gris-oscuro: #18181b;
+  --gris: #71717a;
+  --blanco: #fafafa;
+  --acento: #B5A642; /* Dorado cálido elegante */
+
+  /* Colores derivados */
+  --fondo: var(--blanco);
+  --fondo-oscuro: var(--negro);
+  --texto: var(--negro);
+  --texto-suave: var(--gris);
+  --texto-claro: var(--blanco);
+
+  /* Bordes y sombras */
+  --borde: rgba(10, 10, 11, 0.08);
+  --borde-hover: rgba(10, 10, 11, 0.15);
+  --sombra-suave: 0 1px 2px rgba(10, 10, 11, 0.04);
+  --sombra-media: 0 4px 12px rgba(10, 10, 11, 0.08);
+  --sombra-elevada: 0 12px 40px rgba(10, 10, 11, 0.12);
+
+  /* Espaciado y medidas */
+  --radio: 12px;
+  --radio-lg: 16px;
+  --ancho-max: 1140px;
+  --alto-cabecera: 72px;
+
+  /* Transiciones */
+  --transicion: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}:root {
+  /* Colores principales - Solo 4 colores */
+  --negro: #0a0a0b;
+  --gris-oscuro: #18181b;
+  --gris: #71717a;
+  --blanco: #fafafa;
+  --acento: #B5A642; /* Dorado cálido elegante */
+
+  /* Colores derivados */
+  --fondo: var(--blanco);
+  --fondo-oscuro: var(--negro);
+  --texto: var(--negro);
+  --texto-suave: var(--gris);
+  --texto-claro: var(--blanco);
+
+  /* Bordes y sombras */
+  --borde: rgba(10, 10, 11, 0.08);
+  --borde-hover: rgba(10, 10, 11, 0.15);
+  --sombra-suave: 0 1px 2px rgba(10, 10, 11, 0.04);
+  --sombra-media: 0 4px 12px rgba(10, 10, 11, 0.08);
+  --sombra-elevada: 0 12px 40px rgba(10, 10, 11, 0.12);
+
+  /* Espaciado y medidas */
+  --radio: 12px;
+  --radio-lg: 16px;
+  --ancho-max: 1140px;
+  --alto-cabecera: 72px;
+
+  /* Transiciones */
+  --transicion: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.footer {
+  background: var(--fondo-oscuro);
+  color: var(--texto-claro);
+  position: relative;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--acento), transparent);
+}
+/* Degradado horizontal: transparente | dorado acento | transparente (línea superior del footer) */
+.footer-container {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 72px) 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.08);
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+.footer-brand h2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.footer-brand h2 span {
+  color: var(--acento);
+}
+
+.footer-brand a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(250, 250, 250, 0.5);
+  margin-bottom: 24px;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(250, 250, 250, 0.05);
+  color: rgba(250, 250, 250, 0.6);
+  font-size: 18px;
+  transition: all var(--transicion);
+}
+.footer-social a:hover {
+  background: var(--acento);
+  color: var(--negro);
+  transform: translateY(-2px);
+}
+
+.footer-column h4 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-bottom: 20px;
+}
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column li {
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  font-size: 14px;
+  color: rgba(250, 250, 250, 0.6);
+  transition: color var(--transicion);
+}
+
+.footer-column a:hover {
+  color: var(--texto-claro);
+}
+/* Horario especial */
+.footer-schedule {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(250, 250, 250, 0.5);
+}
+.footer-schedule span {
+  display: block;
+  color: rgba(250, 250, 250, 0.7);
+  font-weight: 500;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  gap: 24px;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(250, 250, 250, 0.4);
+}
+
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+/* Modo accesibilidad para footer */
+body.accesibilidad-on .footer {
+  background: #080808 !important;
+  color: #ffd84d !important;
+}
+
+body.accesibilidad-on .footer::before {
+  background: linear-gradient(90deg, transparent, #ffd84d, transparent) !important;
+}
+
+body.accesibilidad-on .footer-grid {
+  border-bottom-color: rgba(255, 216, 77, 0.35) !important;
+}
+
+body.accesibilidad-on .footer-brand h2,
+body.accesibilidad-on .footer-brand h2 span,
+body.accesibilidad-on .footer-brand p,
+body.accesibilidad-on .footer-column h4,
+body.accesibilidad-on .footer-column a,
+body.accesibilidad-on .footer-schedule,
+body.accesibilidad-on .footer-schedule span,
+body.accesibilidad-on .footer-bottom p,
+body.accesibilidad-on .footer a {
+  color: #ffd84d !important;
+}
+
+body.accesibilidad-on .footer-social a {
+  background: rgba(255, 216, 77, 0.15) !important;
+  color: #ffd84d !important;
+  border: 1px solid rgba(255, 216, 77, 0.45) !important;
+}
+
+body.accesibilidad-on .footer-social a:hover {
+  background: #ffd84d !important;
+  color: #080808 !important;
+}
+/* Responsive footer: desde 968px hacia abajo (tablet/móvil ancho) */
+@media (max-width: 968px) {
+ .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+ 

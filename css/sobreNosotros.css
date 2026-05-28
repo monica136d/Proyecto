@@ -1,0 +1,307 @@
+/* este css da estilo a la página sobre nosotros */
+/* HERO SOBRE NOSOTROS */
+
+.hero-nosotros {
+    margin-top: var(--alto-cabecera);
+    height: 60vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 11, 0.6),
+        rgba(10, 10, 11, 0.85)
+    ),
+    url("../assets/hero-nosotros.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    text-align: center;
+    color: var(--texto-claro);
+    overflow: hidden;
+}
+
+.hero-nosotros-texto {
+    max-width: 720px;
+    animation: heroFadeUp 0.9s ease both;
+}
+
+.hero-nosotros-texto h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--acento);
+    margin-bottom: 16px;
+}
+
+.hero-nosotros-texto p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(250, 250, 250, 0.75);
+    line-height: 1.7;
+}
+
+/* SECCIÓN  NUESTRA HISTORIA */
+
+.historia {
+    padding: 80px 24px;
+    background: var(--fondo);
+}
+
+.historia-contenedor {
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.historia-texto {
+    flex: 1 1 400px;
+}
+
+.historia-texto h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--acento);
+    margin-bottom: 20px;
+}
+
+.historia-texto p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--texto-suave);
+    margin-bottom: 16px;
+}
+
+.historia-imagenes {
+    flex: 1 1 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.foto-equipo {
+    width: 100%;
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-elevada);
+    object-fit: cover;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.foto-equipo:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* SECCIÓN NUESTRA MEGA  FILOSOFÍA */
+
+.filosofia {
+    padding: 80px 24px;
+    text-align: center;
+    background: var(--fondo);
+}
+
+.filosofia h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--acento);
+    margin-bottom: 20px;
+}
+
+.filosofia p {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-size: 16px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+}
+
+.filosofia-grid {
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.filo-card {
+    background: var(--blanco);
+    padding: 24px;
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-media);
+    text-align: left;
+    border: 1px solid rgba(212, 165, 116, 0.18);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.filo-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212, 165, 116, 0.55);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.12);
+}
+
+.filo-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--acento);
+    margin-bottom: 12px;
+}
+
+.filo-card p {
+    font-size: 15px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+}
+
+/* SECCIÓN LA  MISIÓN DE NUESTRA FUTUTA VIDA */
+
+.mision {
+    background: var(--negro);
+    color: var(--texto-claro);
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.mision-contenedor {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.mision h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--acento);
+    margin-bottom: 20px;
+}
+
+.mision p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-mision-cta {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--acento);
+    color: var(--acento);
+    font-weight: 600;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-mision-cta:hover {
+    background: var(--acento);
+    color: var(--negro);
+    transform: translateY(-2px);
+}
+
+/* SECCIÓN FRASES  */
+
+.frases {
+    background: var(--fondo);
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.frases-contenedor {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.frases blockquote {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gris);
+    border-left: 4px solid var(--acento);
+    padding-left: 16px;
+    transition: color var(--transicion);
+}
+
+.frases blockquote:hover {
+    color: var(--texto);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modo accesibilidad para página Sobre Nosotros */
+body.accesibilidad-on .hero-nosotros {
+    background: linear-gradient(
+        to bottom,
+        rgba(8, 8, 8, 0.92),
+        rgba(8, 8, 8, 0.98)
+    ) !important;
+}
+
+body.accesibilidad-on .historia,
+body.accesibilidad-on .filosofia,
+body.accesibilidad-on .frases,
+body.accesibilidad-on .mision,
+body.accesibilidad-on .filo-card {
+    background: #080808 !important;
+}
+
+body.accesibilidad-on .filo-card {
+    border-color: rgba(255, 216, 77, 0.35) !important;
+}
+
+body.accesibilidad-on .hero-nosotros h1,
+body.accesibilidad-on .hero-nosotros p,
+body.accesibilidad-on .historia h2,
+body.accesibilidad-on .historia p,
+body.accesibilidad-on .filosofia h2,
+body.accesibilidad-on .filosofia p,
+body.accesibilidad-on .filo-card h3,
+body.accesibilidad-on .filo-card p,
+body.accesibilidad-on .mision h2,
+body.accesibilidad-on .mision p,
+body.accesibilidad-on .frases blockquote,
+body.accesibilidad-on .btn-mision-cta {
+    color: #ffd84d !important;
+}
+
+body.accesibilidad-on .btn-mision-cta {
+    border-color: #ffd84d !important;
+}
+/* Animación del texto del hero al cargar la página (usa .hero-nosotros-texto).
+   De invisible y un poco abajo → visible en su sitio (sube 24px y aparece). */
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+/* Responsive sobre nosotros: desde 768px hacia abajo (tablet ancho) */
+
+@media (max-width: 768px) {
+    .historia-contenedor {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .historia-imagenes {
+        width: 100%;
+    }
+
+    .filo-card {
+        text-align: center;
+    }
+}

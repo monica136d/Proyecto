@@ -1,0 +1,83 @@
+/* este css define el diseño de los mensajes toast */
+/* Toast dark elegante suave */
+
+.toast-reserva {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10000;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 14px 18px 20px;
+  transform: translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #f3f4f6;
+  background: #18181b;
+  border: 1px solid rgba(212, 165, 116, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(10, 10, 11, 0.3);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.toast-reserva::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(181, 166, 66, 0.95);
+  transform: scaleX(1);
+  transform-origin: left center;
+  opacity: 0;
+}
+
+.toast-reserva--countdown::after {
+  opacity: 1;
+  animation: toast-reserva-countdown var(--toast-duration, 5000ms) linear forwards;
+  animation-play-state: paused;
+}
+
+.toast-reserva--visible.toast-reserva--countdown::after {
+  animation-play-state: running;
+}
+
+@keyframes toast-reserva-countdown {
+  to {
+    transform: scaleX(0);
+    opacity: 0.45;
+  }
+}
+
+.toast-reserva.toast-reserva--visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive toast: desde 480px hacia abajo (móvil ancho) */
+@media (max-width: 480px) {
+  .toast-reserva {
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    margin: 0;
+    max-width: calc(100vw - 2rem);
+    border-radius: 12px;
+    transform: translateY(8px);
+  }
+
+  .toast-reserva.toast-reserva--visible {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,570 @@
+/* este css marca el estilo general de la web de inicio */
+/*   Paleta Minimalista */
+:root {
+  /* Colores principales - Solo 4 colores */
+  --negro: #0a0a0b;
+  --gris-oscuro: #18181b;
+  --gris: #71717a;
+  --blanco: #fafafa;
+  --acento: #B5A642; /* Dorado cálido elegante */
+
+  /* Colores derivados */
+  --fondo: var(--blanco);
+  --fondo-oscuro: var(--negro);
+  --texto: var(--negro);
+  --texto-suave: var(--gris);
+  --texto-claro: var(--blanco);
+
+  /* Bordes y sombras */
+  --borde: rgba(10, 10, 11, 0.08);
+  --borde-hover: rgba(10, 10, 11, 0.15);
+  --sombra-suave: 0 1px 2px rgba(10, 10, 11, 0.04);
+  --sombra-media: 0 4px 12px rgba(10, 10, 11, 0.08);
+  --sombra-elevada: 0 12px 40px rgba(10, 10, 11, 0.12);
+
+  /* Espaciado y medidas */
+  --radio: 12px;
+  --radio-lg: 16px;
+  --ancho-max: 1140px;
+  --alto-cabecera: 72px;
+
+  /* Transiciones */
+  --transicion: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cabecera {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--alto-cabecera);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 48px);
+  background: rgba(250, 250, 250, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.logo h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--texto);
+}
+
+.logo .oro {
+  color: var(--acento);
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.menu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--texto-suave);
+  transition: color var(--transicion);
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--acento);
+  transition: width var(--transicion);
+}
+
+.menu a:hover {
+  color: var(--texto);
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+.cta {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--alto-cabecera) + 48px) 24px 80px;
+  background: linear-gradient(to bottom, var(--fondo-oscuro), var(--gris-oscuro));
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(../assets/cta-img.png);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+}
+
+.cta-content {
+  position: relative;
+  max-width: 720px;
+  text-align: center;
+  color: var(--texto-claro);
+}
+
+.cta-content h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: rgba(250, 250, 250, 0.7);
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 14px 28px;
+  background: var(--acento);
+  color: var(--negro);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: var(--radio);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 165, 116, 0.3);
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+}
+
+.nosotros-seccion-principal,
+.mapa-seccion-principal {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(80px, 10vw, 120px) 24px;
+}
+
+.color-lateral,
+.color-lateral-derecha {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 35%;
+  background: var(--fondo-oscuro);
+  z-index: -1;
+}
+
+.color-lateral {
+  left: 0;
+}
+
+.color-lateral-derecha {
+  right: 0;
+}
+
+.nosotros-contenido,
+.mapa-contenido {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.mapa-contenido {
+  flex-direction: row-reverse;
+}
+
+.nosotros-imagen {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 480px;
+  background: url(../assets/nosotros.png) no-repeat center;
+  background-size: cover;
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-elevada);
+}
+
+.jefes,
+.informacion-contacto {
+  flex: 1;
+  max-width: 480px;
+  padding: clamp(28px, 4vw, 40px);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-media);
+}
+
+.jefes h3,
+.informacion-contacto h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--texto);
+}
+
+.jefes p,
+.informacion-contacto p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--texto-suave);
+}
+
+.informacion-contacto h4 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.informacion-contacto h4:first-of-type {
+  margin-top: 0;
+}
+
+.nosotros-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--texto);
+  background: transparent;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  transition: all var(--transicion);
+}
+
+.nosotros-btn:hover {
+  border-color: var(--acento);
+  color: var(--acento);
+}
+
+/* Modo accesibilidad para bloques de inicio (sobre nosotros + contacto) */
+body.accesibilidad-on .nosotros-seccion-principal,
+body.accesibilidad-on .mapa-seccion-principal {
+  background: #080808 !important;
+}
+
+body.accesibilidad-on .jefes,
+body.accesibilidad-on .informacion-contacto {
+  background: #080808 !important;
+  border-color: rgba(255, 216, 77, 0.35) !important;
+}
+
+body.accesibilidad-on .jefes h3,
+body.accesibilidad-on .informacion-contacto h2,
+body.accesibilidad-on .informacion-contacto h4,
+body.accesibilidad-on .jefes p,
+body.accesibilidad-on .informacion-contacto p,
+body.accesibilidad-on .nosotros-btn {
+  color: #ffd84d !important;
+}
+
+body.accesibilidad-on .nosotros-btn {
+  border-color: #ffd84d !important;
+}
+
+.mapa-contenido iframe {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 520px;
+  width: 100%;
+  border: none;
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-elevada);
+}
+
+.footer {
+  background: var(--fondo-oscuro);
+  color: var(--texto-claro);
+  position: relative;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--acento), transparent);
+}
+
+.footer-container {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 72px) 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.08);
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-brand h2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.footer-brand h2 span {
+  color: var(--acento);
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(250, 250, 250, 0.5);
+  margin-bottom: 24px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(250, 250, 250, 0.05);
+  color: rgba(250, 250, 250, 0.6);
+  font-size: 18px;
+  transition: all var(--transicion);
+}
+
+.footer-social a:hover {
+  background: var(--acento);
+  color: var(--negro);
+  transform: translateY(-2px);
+}
+
+.footer-column h4 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-bottom: 20px;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column li {
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  font-size: 14px;
+  color: rgba(250, 250, 250, 0.6);
+  transition: color var(--transicion);
+}
+
+.footer-column a:hover {
+  color: var(--texto-claro);
+}
+
+/* Horario especial */
+.footer-schedule {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(250, 250, 250, 0.5);
+}
+
+.footer-schedule span {
+  display: block;
+  color: rgba(250, 250, 250, 0.7);
+  font-weight: 500;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  gap: 24px;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(250, 250, 250, 0.4);
+}
+
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal a {
+  font-size: 13px;
+  color: rgba(250, 250, 250, 0.4);
+  transition: color var(--transicion);
+}
+
+.footer-legal a:hover {
+  color: var(--acento);
+}
+
+/* Responsive style: desde 968px hacia abajo (tablet/móvil ancho) */
+@media (max-width: 968px) {
+  .cabecera {
+    padding: 0 20px;
+  }
+
+  .menu {
+    gap: 20px;
+  }
+
+  .menu a {
+    font-size: 13px;
+  }
+
+  .nosotros-contenido,
+  .mapa-contenido {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nosotros-imagen,
+  .mapa-contenido iframe {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .jefes,
+  .informacion-contacto {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .color-lateral,
+  .color-lateral-derecha {
+    display: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Responsive style: desde 540px hacia abajo (móvil ancho) */
+@media (max-width: 540px) {
+  .logo h2 {
+    font-size: 18px;
+  }
+
+  .menu {
+    gap: 16px;
+  }
+
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .jefes,
+  .informacion-contacto {
+    padding: 24px;
+  }
+}

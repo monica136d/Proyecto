@@ -1,0 +1,113 @@
+/* este css es el detalle visual del menú de primavera */
+/* FONDO DE LA PÁGINA: Negro ceniza profundo */
+body {
+    background-color: #0f0f0f; 
+    color: #ffffff;
+    margin: 0;
+}
+
+/* EL CONTENEDOR: Con el  borde "Brasa de Oro" integrado eso parece */
+.menu-detalle-container {
+   max-width: 850px;
+    margin: 80px auto; 
+    padding: 45px;
+    border-radius: 40px; 
+    position: relative;
+    
+    /* Configuración del borde muy fino */
+    background-color: #1a1a1a;
+    border: 1px solid #B5A642; /* Empieza solo en Oro muy fino */
+    
+    /* Transición suave para el efecto de color */
+    transition: all 0.6s ease-in-out;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* CABECERA */
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 10px 0;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.season-label {
+    color: #B5A642; 
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.intro-text {
+    color: #aaaaaa;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* CUERPO DEL MENÚ */
+.menu-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.menu-image {
+    flex: 0 0 260px;
+}
+
+.menu-image img {
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid #B5A642;
+    filter: brightness(0.9);
+}
+
+/* LISTA DE PLATOS */
+.platos-lista {
+    flex: 1;
+}
+
+.pase {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.info h3 {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+}
+
+.info p {
+    font-size: 0.95rem;
+    color: #bbbbbb;
+    font-style: italic;
+}
+
+/* MARIDAJE */
+.maridaje {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #B5A642;
+    font-weight: bold;
+}
+
+/* RESPONSIVE */
+/* Responsive menu primavera: desde 800px hacia abajo (tablet/móvil ancho) */
+@media (max-width: 800px) {
+    .menu-content { flex-direction: column; align-items: center; }
+    .menu-image { width: 100%; max-width: 300px; }
+    .menu-detalle-container { 
+        margin: 40px 15px; 
+        padding: 30px; 
+    }
+}

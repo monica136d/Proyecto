@@ -1,0 +1,108 @@
+/* este css es el detalle visual del menú de invierno */
+/* FONDO DE LA PÁGINA: Negro ceniza profundo */
+body {
+    background-color: #0f0f0f; 
+    color: #ffffff;
+    margin: 0;
+}
+
+/* EL CONTENEDOR: Oscuro con línea ultra fina (1px) */
+.menu-detalle-container {
+    max-width: 850px;
+    margin: 80px auto; 
+    padding: 45px;
+    background-color: #1a1a1a; /* Negro Ceniza */
+    
+    /* Línea de 1px: Mezcla de Oro y Rojo oscuro para que sea fina pero con carácter */
+    border: 1px solid #917631; 
+    
+    border-radius: 40px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* CABECERA */
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #ffffff; /* Texto blanco para el fondo oscuro */
+    margin: 10px 0;
+}
+
+.season-label {
+    color: #B5A642; 
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.intro-text {
+    color: #999; /* Gris suave para la descripción */
+    font-size: 1rem;
+}
+
+/* CUERPO */
+.menu-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.menu-image {
+    flex: 0 0 260px;
+}
+
+.menu-image img {
+    width: 100%;
+    border-radius: 25px; 
+    border: 1px solid #333; /* Borde de la foto discreto */
+}
+
+/* LISTA DE PLATOS */
+.platos-lista {
+    flex: 1;
+}
+
+.pase {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2a2a2a; /* Línea de separación oscura */
+}
+
+.pase:last-child {
+    border-bottom: none;
+}
+
+.info h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+}
+
+.info p {
+    font-size: 0.9rem;
+    color: #aaaaaa; /* Texto de platos en gris claro */
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* MARIDAJE */
+.maridaje {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #B5A642;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* RESPONSIVE */
+/* Responsive menu invierno: desde 800px hacia abajo (tablet/móvil ancho) */
+@media (max-width: 800px) {
+    .menu-content { flex-direction: column; }
+    .menu-image { width: 100%; flex: none; margin-bottom: 20px; }
+    .menu-detalle-container { margin: 40px 20px; padding: 30px; }
+}

@@ -1,0 +1,307 @@
+/* este css se encarga de la vista y el formulario de reservas */
+/* Reserva — misma paleta que style.css*/
+:root {
+    --negro: #0a0a0b;
+    --gris-oscuro: #18181b;
+    --gris: #71717a;
+    --blanco: #fafafa;
+    --acento: #B5A642;
+    --fondo: var(--blanco);
+    --fondo-oscuro: var(--negro);
+    --texto: var(--negro);
+    --texto-suave: var(--gris);
+    --texto-claro: var(--blanco);
+    --borde: rgba(10, 10, 11, 0.08);
+    --sombra-media: 0 4px 12px rgba(10, 10, 11, 0.08);
+    --sombra-elevada: 0 12px 40px rgba(10, 10, 11, 0.12);
+    --radio: 12px;
+    --radio-lg: 16px;
+    --ancho-max: 1140px;
+    --alto-cabecera: 72px;
+    --transicion: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--texto);
+    background: var(--fondo);
+    margin: 0;
+  }
+  
+  /* --- Hero (misma línea que .cta del index) --- */
+  .reserva-hero {
+    position: relative;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--alto-cabecera) + 40px) 24px 56px;
+    background: linear-gradient(to bottom, var(--fondo-oscuro), var(--gris-oscuro));
+    overflow: hidden;
+  }
+  
+  .reserva-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../assets/cta-img.png);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+  }
+  
+  .reserva-hero-content {
+    position: relative;
+    max-width: 640px;
+    color: var(--texto-claro);
+  }
+  
+  .reserva-subtitulo {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin: 0 0 12px;
+  }
+  
+  .reserva-hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+  
+  .reserva-descripcion {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: rgba(250, 250, 250, 0.72);
+    line-height: 1.7;
+  }
+  
+  /* --- Sección formulario --- */
+  .reserva-seccion {
+    padding: clamp(64px, 8vw, 96px) 24px;
+  }
+  
+  .reserva-contenedor {
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 320px);
+    gap: clamp(24px, 4vw, 40px);
+    align-items: start;
+  }
+  
+  .reserva-formulario-wrapper {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-media);
+    padding: clamp(24px, 4vw, 36px);
+  }
+  
+  .reserva-formulario-wrapper h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  
+  .reserva-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-grupo-full {
+    grid-column: 1 / -1;
+  }
+  
+  .form-grupo label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--acento);
+  }
+  
+  .reserva-form input,
+  .reserva-form select,
+  .reserva-form textarea {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--blanco);
+    color: var(--texto);
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+  }
+  
+  .reserva-form input:focus,
+  .reserva-form select:focus,
+  .reserva-form textarea:focus {
+    outline: none;
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.25);
+  }
+  
+  .reserva-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .reserva-btn {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 8px 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: transparent;
+    color: #555;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .reserva-btn:hover {
+    color: #0a0a0b;
+    border-color: #B5A642;
+  }
+
+  .reserva-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1.5px;
+    background: #B5A642;
+    transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reserva-btn:hover::after {
+    width: 100%;
+  }
+  
+  .reserva-btn i {
+    display: none;
+  }
+  
+  /* --- Tarjeta info (tono footer / oscuro) --- */
+  .reserva-info-card {
+    background: var(--fondo-oscuro);
+    color: var(--texto-claro);
+    border-radius: var(--radio-lg);
+    padding: clamp(20px, 3vw, 28px);
+    box-shadow: var(--sombra-elevada);
+  }
+  
+  .reserva-info-card h3 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin: 0 0 20px;
+  }
+  
+  .info-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .info-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .info-item > i {
+    flex-shrink: 0;
+    font-size: 22px;
+    color: var(--acento);
+    margin-top: 2px;
+  }
+  
+  .info-item h4 {
+    margin: 0 0 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--acento);
+  }
+  
+  .info-item p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(250, 250, 250, 0.65);
+  }
+  
+  /* --- Menús por comensal (generados por JS) --- */
+  #menus-por-comensal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  /* Cada bloque "Comensal X + select" ocupa un espacio mínimo */
+  #menus-por-comensal .form-grupo {
+    flex: 1 1 180px;
+    max-width: 260px;
+  }
+
+  /* Texto de ayuda debajo del label de menús */
+  .reserva-ayuda-menus {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--texto-suave);
+    font-style: italic;
+  }
+
+.reserva-ayuda-mesas {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--texto);
+  font-weight: 500;
+}
+
+  /* Responsive reservar: desde 900px hacia abajo (tablet ancho) */
+  @media (max-width: 900px) {
+    .reserva-contenedor {
+      grid-template-columns: 1fr;
+    }
+  
+    .form-fila {
+      grid-template-columns: 1fr;
+    }
+
+    /* En móvil los selects de menú ocupan todo el ancho */
+    #menus-por-comensal .form-grupo {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }

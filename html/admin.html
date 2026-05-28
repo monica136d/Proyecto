@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  <link rel="shortcut icon" href="../assets/logo.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+
+
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/toast.css">
+
+
+  
+  <title>Panel de Administración</title>
+
+  <script src="../js/admin.js" ></script>
+  <script src="../js/footer.js"></script>
+</head>
+
+<body class="pagina-admin">
+  <!-- header compartido -->
+  <div id="header"></div>
+  <script src="../js/header.js"></script>
+
+  <!-- estructura del panel: menu lateral a la izquierda + contenido principal a la derecha -->
+  <div class="contenedor-admin">
+
+    <!-- menu lateral para cambiar entre las 4 secciones -->
+    <aside class="barra-lateral">
+      <div class="titulo-barra">Administración</div>
+
+      <nav class="menu-admin">
+        <button class="activo" data-seccion="panel">
+          <i class='bx bxs-dashboard'></i>
+          <span>Panel</span>
+        </button>
+
+        <button data-seccion="menus">
+          <i class='bx bxs-food-menu'></i>
+          <span>Menús</span>
+        </button>
+
+        <button data-seccion="reservas">
+          <i class='bx bxs-calendar'></i>
+          <span>Reservas</span>
+        </button>
+
+        <button data-seccion="usuarios">
+          <i class='bx bxs-user-detail'></i>
+          <span>Usuarios</span>
+        </button>
+
+      </nav>
+    </aside>
+
+    <!-- aqui van las 4 secciones, admin.js muestra/esconde la que toca -->
+    <main class="contenido-principal">
+
+      <!-- SECCION PANEL: contadores + actividad reciente -->
+      <section class="seccion activa" id="panel">
+        <h1>Panel de control</h1>
+
+        <!-- los 3 contadores de arriba (los rellena admin.js con un fetch) -->
+        <div class="cuadricula-3">
+          <div class="tarjeta mini">
+            <h3>Menús</h3>
+            <p id="contador-menus">0</p>
+          </div>
+
+          <div class="tarjeta mini">
+            <h3>Reservas</h3>
+            <p id="contador-reservas">0</p>
+          </div>
+
+          <div class="tarjeta mini">
+            <h3>Usuarios</h3>
+            <p id="contador-usuarios">0</p>
+          </div>
+        </div>
+
+        <!-- historial de acciones del admin con boton para vaciarlo -->
+        <div class="tarjeta">
+          <div class="actividad-encabezado">
+            <h2>Actividad reciente</h2>
+            <button type="button" id="btnVaciarActividad" class="btn-cabecera">Vaciar actividad</button>
+          </div>
+          <div id="actividadRecienteLista">
+            <p class="subtitulo">Cargando actividad…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCION MENUS: formulario para crear/editar + tabla -->
+      <section class="seccion" id="menus">
+        <h1>Menús</h1>
+
+        <div class="cuadricula-2">
+          <!-- formulario para crear un menu nuevo (el js lo cambia a editar cuando toque) -->
+          <div class="tarjeta">
+            <h2 id="titulo-form-menu">Crear menú</h2>
+
+            <form id="formMenu" action="../php/menu_guardar.php" method="POST">
+              <!-- id oculto, solo se rellena cuando estamos editando un menu -->
+              <input type="hidden" id="id_menu_editar" name="id_menu" value="">
+
+              <div class="fila-formulario">
+                <label for="nombre_menu">Nombre</label>
+                <input id="nombre_menu" name="nombre" type="text" placeholder="Ej: Menú Primavera" required>
+              </div>
+
+              <div class="fila-formulario">
+                <label for="temporada_menu">Temporada</label>
+                <input id="temporada_menu" name="temporada" type="text" placeholder="Ej: Renacer" required>
+              </div>
+
+              <div class="fila-formulario">
+                <label for="imagen_ruta_menu">Ruta imagen</label>
+                <input id="imagen_ruta_menu" name="imagen_ruta" type="text" placeholder="assets/primavera.png" required>
+              </div>
+
+              <div class="fila-formulario">
+                <label for="id_plato_menu">Plato</label>
+                <select id="id_plato_menu" name="id_plato" required>
+                  <option value="">Cargando platos…</option>
+                </select>
+              </div>
+              <div class="fila-formulario">
+                <label for="desc_plato_menu">Descripción del plato</label>
+                <input id="desc_plato_menu" name="desc_plato" type="text" placeholder="Ej: Sopa fría de tomate verde" required>
+              </div>
+
+              <div class="fila-formulario">
+                <label for="id_vino_menu">Vino (maridaje)</label>
+                <select id="id_vino_menu" name="id_vino" required>
+                  <option value="">Cargando vinos…</option>
+                </select>
+              </div>
+              <div class="fila-formulario">
+                <label for="nombre_vino_menu">Nombre del vino</label>
+                <input id="nombre_vino_menu" name="nombre_vino" type="text" placeholder="Ej: Txacoli" required>
+              </div>
+
+              <button class="btn-cabecera btn-crear-menu" id="btn_guardar_menu" type="submit">Crear</button>
+            </form>
+          </div>
+
+          <!-- tabla con los menus, la rellena admin.js cargando del php -->
+          <div class="tarjeta">
+            <h2>Lista de menús</h2>
+
+            <table class="tabla">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Temporada</th>
+                  <th>Plato</th>
+                  <th>Vino</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaMenusBody">
+                <tr><td colspan="6">Cargando…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCION RESERVAS: filtros + tabla + modal para editar -->
+      <section class="seccion" id="reservas">
+        <h1>Reservas</h1>
+
+        <div class="tarjeta">
+          <h2>Reservas del sistema</h2>
+
+          <!-- filtros para buscar por mes, dia exacto o estado -->
+          <div class="filtros-reservas filtros-pill">
+            <div class="filtro-item">
+              <i class='bx bx-calendar'></i>
+              <select id="filtroMes" class="filtro-select">
+                <option value="">Todos los meses</option>
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+              </select>
+            </div>
+
+            <div class="filtro-item">
+              <i class='bx bx-calendar-event'></i>
+              <input type="date" id="filtroDia" class="filtro-select filtro-fecha" title="Día exacto">
+            </div>
+
+            <div class="filtro-item">
+              <i class='bx bx-filter-alt'></i>
+              <select id="filtroEstado" class="filtro-select">
+                <option value="">Todos los estados</option>
+                <option value="pendiente">Pendientes</option>
+                <option value="confirmada">Confirmadas</option>
+                <option value="cancelada">Canceladas</option>
+              </select>
+            </div>
+
+            <button type="button" id="btnLimpiarFiltros" class="btn-cabecera btn-limpiar-filtros">Limpiar</button>
+          </div>
+
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Mesa</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Comensales</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaReservasBody">
+              <tr><td colspan="8">Cargando reservas…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- modal para editar reservas (esta oculto con hidden hasta que se pulsa editar) -->
+        <div id="modalEditarReserva" class="modal-overlay" hidden>
+          <div class="modal-caja tarjeta">
+            <h2>Editar reserva</h2>
+
+            <div class="fila-formulario">
+              <label for="edit_fecha">Fecha</label>
+              <input type="date" id="edit_fecha">
+            </div>
+
+            <div class="fila-formulario">
+              <label for="edit_hora">Hora</label>
+              <select id="edit_hora">
+                <option value="14:00">14:00 — Menú degustación</option>
+              </select>
+            </div>
+
+            <div class="fila-formulario">
+              <label for="edit_mesa">Mesa disponible</label>
+              <select id="edit_mesa">
+                <option value="">— elige fecha y hora primero —</option>
+              </select>
+            </div>
+
+            <div class="fila-formulario">
+              <label for="edit_estado">Estado</label>
+              <select id="edit_estado">
+                <option value="pendiente">Pendiente</option>
+                <option value="confirmada">Confirmada</option>
+                <option value="cancelada">Cancelada</option>
+              </select>
+            </div>
+
+            <div class="acciones modal-acciones">
+              <button class="boton" id="btnGuardarEdicion">Guardar cambios</button>
+              <button class="boton secundario" id="btnCerrarModal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCION USUARIOS: tabla + modales (editar y ver detalles) -->
+      <section class="seccion" id="usuarios">
+        <h1>Usuarios</h1>
+
+        <div class="tarjeta">
+          <h2>Lista de usuarios</h2>
+
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaUsuariosBody">
+              <tr><td colspan="5">Cargando usuarios…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- modal para editar nombre, email y rol del usuario -->
+        <div id="modalEditarUsuario" class="modal-overlay" hidden>
+          <div class="modal-caja tarjeta">
+            <h2>Editar usuario</h2>
+
+            <div class="fila-formulario">
+              <label for="eu_nombre">Nombre</label>
+              <input type="text" id="eu_nombre" placeholder="Nombre">
+            </div>
+
+            <div class="fila-formulario">
+              <label for="eu_email">Email</label>
+              <input type="email" id="eu_email" placeholder="email@ejemplo.com">
+            </div>
+
+            <div class="fila-formulario">
+              <label for="eu_rol">Rol</label>
+              <select id="eu_rol">
+                <option value="cliente">Cliente</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <div class="acciones modal-acciones">
+              <button class="boton" id="btnGuardarUsuario">Guardar cambios</button>
+              <button class="boton secundario" id="btnCerrarModalUsuario">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- modal con los datos del usuario y la tabla de sus reservas -->
+        <div id="modalDetallesUsuario" class="modal-overlay" hidden>
+          <div class="modal-caja tarjeta modal-caja-ancha">
+            <h2>Detalles del usuario</h2>
+            <div id="detallesUsuarioInfo"></div>
+
+            <h3 class="titulo-reservas-usuario">Reservas del usuario</h3>
+            <table class="tabla">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Mesa</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="detallesUsuarioReservas">
+                <tr><td colspan="5">Sin reservas.</td></tr>
+              </tbody>
+            </table>
+
+            <div class="acciones modal-acciones">
+              <button class="boton secundario" id="btnCerrarDetallesUsuario">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+<!-- footer compartido (lo carga footer.js) -->
+<div id="footer"></div>
+
+
+
+
+
+</body>
+</html>

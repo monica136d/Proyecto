@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <title>Ceniza & Oro — Reserva tu Mesa</title>
+    
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/footer.css">
+        <link rel="stylesheet" href="../css/reservar.css">
+        <link rel="stylesheet" href="../css/toast.css">
+
+        
+        
+        <script src="../js/header.js"></script>
+        <script src="../js/footer.js"></script> 
+</head>
+<body>
+    <!-- header compartido -->
+    <div id="header"></div>
+
+    <!-- hero pequeño con el titulo de la pagina -->
+    <section class="reserva-hero">
+        <div class="reserva-hero-content">
+            <p class="reserva-subtitulo">CENIZA & ORO</p>
+            <h1>Reserva tu Mesa</h1>
+            <p class="reserva-descripcion">Vive una experiencia gastron&oacute;mica &uacute;nica. Selecciona fecha, hora y n&uacute;mero de comensales para asegurar tu lugar.</p>
+        </div>
+    </section>
+
+    <!-- formulario para hacer la reserva (lo procesa procesar_reserva.php) -->
+    <section class="reserva-seccion">
+        <div class="reserva-contenedor">
+
+            <div class="reserva-formulario-wrapper">
+                <h2>Datos de la Reserva</h2>
+                <form class="reserva-form" id="reservaForm" action="../php/procesar_reserva.php" method="POST">
+
+                    <div class="form-fila">
+                        <div class="form-grupo">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+" title="Solo letras y espacios">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="email">Correo electr&oacute;nico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required maxlength="100" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" title="Introduce un correo válido, por ejemplo: nombre@dominio.com" inputmode="email" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-fila">
+                        <div class="form-grupo">
+                            <label for="telefono">Tel&eacute;fono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="600000000" required pattern="[0-9]{9}" minlength="9" maxlength="9" inputmode="numeric" title="Introduce un teléfono de 9 números">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="comensales">N&uacute;mero de comensales</label>
+                            <select id="comensales" name="comensales" required>
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option value="1">1 persona</option>
+                                <option value="2">2 personas</option>
+                                <option value="3">3 personas</option>
+                                <option value="4">4 personas</option>
+                                <option value="5">5 personas</option>
+                                <option value="6">6 personas</option>
+                                <option value="7">7 personas</option>
+                                <option value="8">8 personas</option>
+                                <option value="9">9 personas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- los selects de menu por comensal los crea reserva-menus.js (uno por persona) -->
+                    <div class="form-fila">
+                        <div class="form-grupo form-grupo-full">
+                            <label>Menú degustación por comensal</label>
+                            <div id="menus-por-comensal"></div>
+                            <p class="reserva-ayuda-menus">Elige un menú para cada persona.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-fila">
+                        <div class="form-grupo">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="hora">Hora</label>
+                            <!-- TODO: añadir mas horas cuando lo decidan los profes -->
+                            <select id="hora" name="hora" required>
+                             <option value="" disabled selected>Seleccionar hora</option>
+                                <option value="14:00">14:00 — menú degustación</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- el select de mesas lo rellena reserva-mesas.js segun fecha, hora y comensales -->
+                    <div class="form-fila">
+                        <div class="form-grupo form-grupo-full">
+                            <label for="id_mesa">Mesa principal disponible</label>
+                            <select id="id_mesa" name="id_mesa" required>
+                                <option value="" disabled selected>Primero elige fecha y hora</option>
+                            </select>
+                            <p class="reserva-ayuda-menus">Si no cabe una sola mesa, asignaremos automáticamente una segunda mesa libre.</p>
+                            <p class="reserva-ayuda-mesas" id="resumen-mesas">Selecciona comensales, fecha y hora para ver la asignación estimada.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grupo form-grupo-full">
+                        <label for="observaciones">Observaciones (al&eacute;rgenos, ocasi&oacute;n especial...)</label>
+                        <textarea id="observaciones" name="observaciones" rows="4" placeholder="Escribe aqu&iacute; cualquier detalle que debamos saber..."></textarea>
+                    </div>
+
+                    <button type="submit" class="reserva-btn">
+                        Confirmar Reserva
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- bloque lateral con info util (direccion, telefono, etc) -->
+            <aside class="reserva-info">
+                <div class="reserva-info-card">
+                    <h3>Informaci&oacute;n</h3>
+                    <div class="info-item">
+                        <i class='bx bx-map'></i>
+                        <div>
+                            <h4>Direcci&oacute;n</h4>
+                            <p>Calle Principal 12, Madrid</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class='bx bx-time'></i>
+                        <div>
+                            <h4>Horario</h4>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class='bx bx-phone'></i>
+                        <div>
+                            <h4>Tel&eacute;fono</h4>
+                            <p>(+34) 000 000 000</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class='bx bx-info-circle'></i>
+                        <div>
+                            <h4>Pol&iacute;tica de cancelaci&oacute;n</h4>
+                            <p>Cancelaci&oacute;n gratuita hasta 24h antes de la reserva.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- footer compartido -->
+    <div id="footer"></div>
+
+    <!-- scripts de validar el form, mostrar mensaje de ok, y cargar menus y mesas -->
+    <script src="../js/reserva-validacion.js"></script>
+    <script src="../js/reserva-exito.js"></script>
+    <script src="../js/reserva-menus.js"></script>
+    <script src="../js/reserva-mesas.js"></script>
+</body>
+</html>

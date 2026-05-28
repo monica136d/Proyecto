@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menús y Maridajes — Ceniza & Oro</title>
+
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/menus.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <script src="../js/menus-dinamicos.js?v=2"></script>
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+</head>
+
+<body>
+  <!-- header compartido -->
+  <div id="header"></div>
+
+  <!-- titulo y texto de bienvenida de la pagina de menus -->
+  <section class="intro-menu">
+    <h1>Menus Estaciones</h1>
+    <p class="intro-text">
+      En Ceniza &amp; Oro celebramos el ritmo de la naturaleza. Cada estación nos inspira a crear
+      un menú único, donde los productos locales, el fuego y el maridaje perfecto se unen
+      para contar una historia distinta en cada época del año.
+    </p>
+  </section>
+
+  <!-- este section lo rellena menus-dinamicos.js con las cards desde la base de datos -->
+  <section class="menu-estaciones" id="menu-estaciones-dinamico"></section>
+
+  <!-- boton para ir a reservar  -->
+  <div class="reserva-cta-menus">
+    <a href="reservar.html" class="btn-mision-cta">Reserva tu experiencia</a>
+  </div>
+
+  <!-- footer compartido -->
+  <div id="footer"></div>
+
+</body>
+
+</html>

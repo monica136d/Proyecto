@@ -1,0 +1,501 @@
+/* este css organiza todo el panel de administración */
+:root{
+  --oro:#c2a500;
+  --oscuro:#1a1a1a;
+  --fondo:#f4f4f4;
+  --blanco:#ffffff;
+  /* misma altura que la cabecera compartida (header.css --alto-cabecera) */
+  --alto-encabezado:var(--alto-cabecera, 72px);
+  --ancho-barra:260px;
+  --radio:14px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui, Arial, sans-serif;
+  background:var(--fondo);
+}
+
+.contenedor-admin{
+  padding-top:var(--alto-encabezado);
+  display:flex;
+}
+
+.barra-lateral{
+  position:fixed;
+  top:var(--alto-encabezado);
+  left:0;
+  width:var(--ancho-barra);
+  height:calc(100vh - var(--alto-encabezado));
+  background:linear-gradient(180deg,var(--oscuro),#000);
+  color:#fff;
+  padding:20px 14px;
+}
+
+.titulo-barra{
+  font-size:13px;
+  letter-spacing:0.2em;
+  opacity:.6;
+  margin-bottom:20px;
+}
+
+.menu-admin{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.menu-admin button{
+  border:none;
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  padding:12px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.menu-admin button i{
+  color:var(--oro);
+  font-size:20px;
+}
+
+.menu-admin button.activo{
+  background:rgba(194,165,0,0.2);
+}
+
+.contenido-principal{
+  margin-left:var(--ancho-barra);
+  padding:30px;
+  width:calc(100% - var(--ancho-barra));
+}
+
+.seccion{ display:none; }
+.seccion.activa{ display:block; }
+
+.subtitulo{
+  color:#666;
+  margin-bottom:20px;
+}
+
+.tarjeta{
+  background:var(--blanco);
+  border-radius:var(--radio);
+  padding:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  margin-bottom:18px;
+}
+
+.cuadricula-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.cuadricula-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-bottom:20px;
+}
+
+.mini p{
+  font-size:32px;
+  font-weight:900;
+  margin:0;
+}
+
+.fila-formulario{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:12px;
+}
+
+input, textarea, select{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #ccc;
+}
+
+.boton{
+  padding:12px 14px;
+  border-radius:12px;
+  border:none;
+  background:var(--oro);
+  font-weight:900;
+  cursor:pointer;
+}
+
+.boton.secundario{
+  background:#eee;
+}
+
+.boton.peligro{
+  background:#e74c3c;
+  color:#fff;
+}
+
+.tabla{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.tabla th, .tabla td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+
+.acciones{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+/* ── Tarjetas de Actividad Reciente ── */
+.actividad-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #f0f0f0;
+}
+
+.actividad-item:last-child{ border-bottom:none; }
+
+.actividad-icono{
+  font-size:22px;
+  min-width:30px;
+  text-align:center;
+  padding-top:2px;
+}
+
+.actividad-cuerpo{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.actividad-titulo{
+  font-weight:700;
+  font-size:14px;
+  color:var(--oscuro);
+}
+
+.actividad-mensaje{
+  font-size:13px;
+  color:#555;
+}
+
+.actividad-fecha{
+  font-size:12px;
+  color:#aaa;
+}
+
+/* ── Switch (Ajustes) ── */
+.ajuste-switch{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid #f0f0f0;
+  font-size:14px;
+}
+
+.ajuste-switch:last-of-type{ border-bottom:none; }
+
+.switch{
+  position:relative;
+  display:inline-block;
+  width:42px;
+  height:24px;
+}
+
+.switch input{ opacity:0; width:0; height:0; }
+
+.slider{
+  position:absolute;
+  cursor:pointer;
+  inset:0;
+  background:#ccc;
+  border-radius:24px;
+  transition:.3s;
+}
+
+.slider::before{
+  content:"";
+  position:absolute;
+  height:18px;
+  width:18px;
+  left:3px;
+  bottom:3px;
+  background:#fff;
+  border-radius:50%;
+  transition:.3s;
+}
+
+.switch input:checked + .slider{ background:var(--oro); }
+.switch input:checked + .slider::before{ transform:translateX(18px); }
+
+/* ── Modo oscuro básico (panel) ── */
+body.tema-oscuro{
+  background:#1a1a1a;
+  color:#fafafa;
+}
+
+body.tema-oscuro .tarjeta{
+  background:#2a2a2a;
+  color:#fafafa;
+}
+
+body.tema-oscuro .tabla th,
+body.tema-oscuro .tabla td{
+  border-bottom:1px solid #444;
+  color:#fafafa;
+}
+
+body.tema-oscuro input,
+body.tema-oscuro select,
+body.tema-oscuro textarea{
+  background:#333;
+  color:#fafafa;
+  border-color:#555;
+}
+
+/* ── Modal editar reserva ── */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:2000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-caja{
+  width:100%;
+  max-width:420px;
+  border-radius:var(--radio);
+}
+
+.modal-overlay[hidden] {
+    display: none !important;
+}
+
+/* Botones de cabecera estilo enlaces del header */
+.btn-cabecera {
+  padding: 0;
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #71717a;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.btn-cabecera::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #B5A642;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cabecera:hover {
+  color: #0a0a0b;
+}
+
+.btn-cabecera:hover::after {
+  width: 100%;
+}
+
+.btn-crear-menu{
+  margin-left: 0;
+  cursor: pointer;
+}
+
+/* Botón Crear / Guardar menú: aspecto de botón real (no como enlace gris .btn-cabecera) */
+#formMenu .btn-crear-menu {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 22px;
+  background: var(--oro);
+  color: #0a0a0b;
+  font-weight: 800;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(194, 165, 0, 0.35);
+}
+
+#formMenu .btn-crear-menu:hover {
+  color: #0a0a0b;
+  filter: brightness(1.05);
+}
+
+#formMenu .btn-crear-menu::after {
+  display: none;
+}
+
+/* Extraído de estilos inline de admin.html */
+.filtros-reservas {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filtro-select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+#btnLimpiarFiltros {
+  padding: 8px 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-acciones {
+  margin-top: 14px;
+}
+
+.modal-caja.modal-caja-ancha {
+  max-width: 560px;
+}
+
+.titulo-reservas-usuario {
+  margin-top: 16px;
+}
+
+.actividad-encabezado{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* Filtros reservas estilo "pill" */
+.filtros-reservas.filtros-pill{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:10px 12px;
+  border:1px solid #ececec;
+  border-radius:14px;
+  background:#f8f8f8;
+}
+
+.filtro-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#fff;
+  border:1px solid #e7e7e7;
+  border-radius:12px;
+  padding:6px 10px;
+  min-height:42px;
+}
+
+.filtro-item i{
+  color:#B5A642;
+  font-size:18px;
+}
+
+.filtros-pill .filtro-select{
+  border:none;
+  background:transparent;
+  padding:4px 2px;
+  outline:none;
+  color:#2f2f2f;
+  min-height:auto;
+}
+
+.filtros-pill .filtro-select:focus{
+  box-shadow:none;
+}
+/* Estilo del icono calendario del filtro fecha (admin, filtroDia)*/
+.filtro-fecha::-webkit-calendar-picker-indicator{
+  opacity:.65;
+  cursor:pointer;
+}
+
+.btn-limpiar-filtros{
+  margin-left:auto;
+  white-space:nowrap;
+}
+
+/* estilos que antes estaban inline en admin.js */
+.acciones-tabla{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:none;
+}
+
+.acciones-tabla-menus,
+.acciones-tabla-usuarios{
+  font-size:1.6rem;
+  gap:15px;
+  padding-top:15px;
+}
+
+.acciones-tabla-reservas{
+  font-size:1.5rem;
+  gap:10px;
+}
+
+.form-accion-inline{
+  display:inline;
+  margin:0;
+  padding:0;
+}
+
+.btn-icono-inline{
+  background:none;
+  border:none;
+  padding:0;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+}
+
+.icono-accion{
+  cursor:pointer;
+  transition:transform 0.2s ease;
+}
+
+.icono-accion:hover{
+  transform:scale(1.1);
+}
+
+.icono-dorado{ color:#B5A642; cursor:pointer; }
+.icono-rojo{ color:#9b2c2c; cursor:pointer; }
+.icono-rojo-vivo{ color:#f44336; cursor:pointer; }
+.icono-verde{ color:#4CAF50; cursor:pointer; }
+.icono-gris{ color:#4a4a4a; cursor:pointer; }
+
+.icono-observaciones{
+  color:#B5A642;
+  cursor:pointer;
+  margin-left:8px;
+}

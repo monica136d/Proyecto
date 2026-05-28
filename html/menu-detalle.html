@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú — Ceniza & Oro</title>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/menus.css?v=2">
+  <link rel="stylesheet" href="../css/menu-detalle.css?v=2">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+  <script src="../js/menu-detalle-dinamico.js?v=4"></script>
+</head>
+<body>
+  <!-- header compartido -->
+  <div id="header"></div>
+
+  <!-- hero (imagen grande de arriba). los textos los rellena menu-detalle-dinamico.js -->
+  <section class="menu-hero" id="menuHero">
+    <div class="menu-hero-overlay"></div>
+    <div class="menu-hero-content">
+      <span class="menu-hero-season" id="heroTemporada">Cargando...</span>
+      <h1 class="menu-hero-title" id="heroNombre">Menú</h1>
+      <p class="menu-hero-sub" id="heroSub">Cargando datos del menú.</p>
+    </div>
+  </section>
+
+  <!-- contenido del menu (titulo, precio, imagen y lista de pases) -->
+  <main class="menu-detalle-container">
+    <header class="menu-header">
+      <span class="season-label" id="menuTemporada">Cargando...</span>
+      <h1 id="menuNombre">Menú</h1>
+      <p class="intro-text" id="menuIntro">Cargando datos del menú.</p>
+      <!-- el precio sale solo si el menu tiene precio guardado en la base de datos -->
+      <div class="menu-price-corner" id="menuPrecioWrap" style="display:none;">
+        <p class="menu-price" id="menuPrecio"></p>
+      </div>
+    </header>
+
+    <div class="menu-content">
+      <div class="menu-image">
+        <!-- imagen por defecto, el js la cambia por la del menu real -->
+        <img id="menuImagen" src="../assets/verano.png" alt="Imagen del menú">
+      </div>
+
+      <!-- los pases se rellenan con javascript (skeletons mientras carga) -->
+      <div class="platos-lista" id="listaPases">
+        <p>Cargando platos...</p>
+      </div>
+    </div>
+
+    <!-- flecha dorada para volver a menus.html (esquina abajo izq dentro del cuadro) -->
+    <a href="menus.html" class="volver-menus" title="Volver a menus">
+      <i class='bx bx-left-arrow-alt'></i>
+    </a>
+  </main>
+
+  <!-- boton para ir a reservar  -->
+  <div class="reserva-cta-menus">
+    <a href="reservar.html" class="btn-mision-cta">Reserva tu experiencia</a>
+  </div>
+
+  <!-- footer compartido -->
+  <div id="footer"></div>
+</body>
+</html>

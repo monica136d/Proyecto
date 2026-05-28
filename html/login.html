@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="../css/style.css"> 
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/toast.css">
+
+    <title>Login — Ceniza & Oro</title>
+
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+</head>
+<body>
+    <!-- header (lo rellena header.js) -->
+    <div id="header"></div>
+
+    <!-- formulario de login -->
+    <main class="container">
+        <div class="card">
+            <form action="../php/login.php" method="POST">
+                <h2 class="login">Login</h2>
+
+                <div class="inputBox">
+                    <input type="text" name="usuario" id="usuario" required="required">
+                    <span class="user">Usuario</span>
+                </div>
+
+                <div class="inputBox">
+                    <input type="password" name="password" id="password" required="required">
+                    <span>Contraseña</span>
+                </div>
+
+                <!-- boton para ir al registro y boton para enviar el formulario -->
+                <div id="btn">
+                    <a class="enter" href="register.html">Registrarse</a>
+                    <button type="submit" class="enter">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- footer compartido -->
+    <div id="footer"></div>
+
+    <!-- script para el toast cuando vienes del registro (?registro=ok) -->
+    <script src="../js/login-toast-registro.js"></script>
+
+    <!-- recordar los datos del Administrador en el navegador
+         (asi no tiene que escribir el usuario y la contraseña cada vez) -->
+    <script>
+        // al cargar la pagina, si ya guardamos antes los datos del admin los ponemos.
+        // los miro por separado por si solo hay uno guardado (asi se rellena igual)
+        window.addEventListener('DOMContentLoaded', function () {
+            var u = localStorage.getItem('admin_user');
+            var p = localStorage.getItem('admin_pass');
+            if (u) document.getElementById('usuario').value = u;
+            if (p) document.getElementById('password').value = p;
+        });
+
+        // cuando se envia el formulario, si el usuario es el Administrador guardamos
+        // sus datos para la proxima vez. el trim() es por si escribe un espacio sin querer
+        document.querySelector('form').addEventListener('submit', function () {
+            var u = document.getElementById('usuario').value.trim();
+            var p = document.getElementById('password').value;
+            if (u === 'Administrador') {
+                localStorage.setItem('admin_user', u);
+                localStorage.setItem('admin_pass', p);
+            }
+        });
+    </script>
+</body>
+</html>

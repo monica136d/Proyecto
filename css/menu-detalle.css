@@ -1,0 +1,301 @@
+/* este css es el detalle visual del menú de verano */
+/* FONDO DE LA PÁGINA: Negro ceniza profundo */
+body {
+    background-color: #0f0f0f; 
+    color: #ffffff;
+    margin: 0;
+}
+
+.menu-hero {
+    position: relative;
+    min-height: 46vh;
+    margin-top: var(--alto-cabecera, 72px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+}
+
+.menu-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 15%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.menu-hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.menu-hero-season {
+    display: inline-block;
+    color: #B5A642;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.menu-hero-title {
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+}
+
+.menu-hero-sub {
+    margin: 12px 0 0;
+    color: #d8d8d8;
+    font-size: 1rem;
+    max-width: 680px;
+}
+
+/* EL CONTENEDOR: Fondo oscuro con línea de 1px (un hilo eso parece) */
+.menu-detalle-container {
+    max-width: 850px;
+    margin: 50px auto 80px; 
+    padding: 45px;
+    background-color: #1a1a1a; 
+    border-radius: 40px; 
+    
+    /* LÍNEA ULTRA FINA: 1 solo píxel, color Oro Viejo con matiz rojizo */
+    border: 1px solid #917631; 
+    
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    /* lo pongo relative para que la flecha de volver se coloque dentro del cuadro */
+    position: relative;
+}
+
+/* flecha dorada para volver a menus.html (abajo a la izq dentro del cuadro) */
+.volver-menus {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    color: #B5A642;
+    font-size: 2.4rem; /* mas grande para que se vea alargada */
+    text-decoration: none;
+    line-height: 1;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* la estiro un poco en horizontal para que parezca mas alargada (truco con scaleX) */
+.volver-menus .bx {
+    display: inline-block;
+    transform: scaleX(1.4);
+    transform-origin: left center;
+}
+
+.volver-menus:hover {
+    color: #d4c265;
+    transform: translateX(-4px);
+}
+
+/* CABECERA */
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+.season-label {
+    color: #B5A642; 
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.intro-text {
+    color: #888888;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* CUERPO DEL MENÚ */
+.menu-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.menu-image {
+    flex: 0 0 260px;
+}
+
+.menu-image img {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #333; /* Borde de la foto muy discreto */
+    filter: brightness(0.9);
+}
+
+/* LISTA DE PLATOS */
+.platos-lista {
+    flex: 1;
+}
+
+.pase-skeleton {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.sk-line {
+    border-radius: 10px;
+    background: linear-gradient(90deg, #242424 25%, #333333 50%, #242424 75%);
+    background-size: 220% 100%;
+    animation: skeletonShimmer 1.2s ease-in-out infinite;
+}
+
+.sk-line-badge {
+    width: 95px;
+    height: 22px;
+    margin-bottom: 12px;
+}
+
+.sk-line-title {
+    width: 70%;
+    height: 28px;
+    margin-bottom: 10px;
+}
+
+.sk-line-maridaje {
+    width: 42%;
+    height: 30px;
+}
+
+.menu-error-box {
+    border: 1px solid rgba(181, 166, 66, 0.35);
+    border-radius: 14px;
+    background: rgba(181, 166, 66, 0.06);
+    padding: 16px 18px;
+}
+
+.menu-error-box p {
+    margin: 0 0 12px;
+    color: #dfdfdf;
+}
+
+.btn-reintentar-menu {
+    border: 1px solid #B5A642;
+    background: transparent;
+    color: #B5A642;
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-reintentar-menu:hover {
+    background: #B5A642;
+    color: #111111;
+    transform: translateY(-1px);
+}
+
+.pase {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2a2a2a; /* Línea de separación casi invisible */
+}
+
+.pase:last-child {
+    border-bottom: none;
+}
+
+.info h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+    font-weight: 500;
+}
+
+.info p {
+    font-size: 0.9rem;
+    color: #999999;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.pase-numero {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    border: 1px solid rgba(181, 166, 66, 0.45);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #B5A642;
+    background: rgba(181, 166, 66, 0.08);
+}
+
+/* MARIDAJE */
+.maridaje {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid rgba(181, 166, 66, 0.35);
+    border-radius: 10px;
+    background: rgba(181, 166, 66, 0.06);
+}
+
+.maridaje-icono {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.maridaje-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #c9c9c9;
+}
+
+.maridaje-valor {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #B5A642;
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* RESPONSIVE */
+/* Responsive menu verano: desde 800px hacia abajo (tablet/móvil ancho) */
+@media (max-width: 800px) {
+    .menu-hero {
+        min-height: 38vh;
+    }
+    .menu-hero-content {
+        padding: 26px 0;
+    }
+    .menu-content { flex-direction: column; align-items: center; }
+    .menu-image { width: 100%; max-width: 300px; margin-bottom: 20px; }
+    .menu-detalle-container { 
+        margin: 40px 15px; 
+        padding: 25px; 
+    }
+}

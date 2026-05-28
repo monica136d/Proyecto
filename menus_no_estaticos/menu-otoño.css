@@ -1,0 +1,88 @@
+/* este css es el detalle visual del menú de otoño */
+/* EL CONTENEDOR: Flotante y redondeado */
+.menu-detalle-container {
+    max-width: 850px;
+    margin: 80px auto; 
+    padding: 45px;
+    background-color: #f7f7f7;
+    border: 2px solid #1a1a1a; /* Negro Ceniza */
+    border-radius: 40px;       /* Bordes redondeados */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin: 10px 0;
+}
+
+.season-label {
+    color: #B5A642;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.menu-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.menu-image {
+    flex: 0 0 260px;
+}
+
+.menu-image img {
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid #e0e0e0;
+}
+
+.platos-lista {
+    flex: 1;
+}
+
+.pase {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.pase:last-child {
+    border-bottom: none;
+}
+
+.info h3 {
+    font-size: 1.25rem;
+    color: #1a1a1a;
+    margin: 0 0 5px 0;
+}
+
+.info p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.maridaje {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #B5A642;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Responsive menu otoño: desde 800px hacia abajo (tablet/móvil ancho) */
+@media (max-width: 800px) {
+    .menu-content { flex-direction: column; }
+    .menu-image { width: 100%; flex: none; }
+    .menu-detalle-container { margin: 40px 20px; padding: 30px; }
+}

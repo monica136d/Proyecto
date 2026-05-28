@@ -1,0 +1,305 @@
+/* este css controla la cabecera compartida y su menú */
+
+:root {
+  --negro: #0a0a0b;
+  --gris: #71717a;
+  --blanco: #fafafa;
+  --acento: #B5A642;
+
+  --texto: var(--negro);
+  --texto-suave: var(--gris);
+  --borde: rgba(10, 10, 11, 0.08);
+  --transicion: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --alto-cabecera: 72px;
+}
+
+
+
+/*  HEADer */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.cabecera {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--alto-cabecera);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 48px);
+  background: rgba(250, 250, 250, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--borde);
+}
+
+.logo h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--texto);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.logo .oro {
+  color: var(--acento);
+}
+
+.logo-link{
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 5px 0;
+  background: var(--texto);
+  transition: transform var(--transicion), opacity var(--transicion);
+  transform-origin: center;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.menu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--texto-suave);
+  transition: color var(--transicion);
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--acento);
+  transition: width var(--transicion);
+}
+
+.menu a:hover {
+  color: var(--texto);
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+.btn-accesibilidad {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  border: 1px solid rgba(10, 10, 11, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: color var(--transicion), border-color var(--transicion), background var(--transicion);
+}
+
+.btn-accesibilidad:hover {
+  color: var(--texto);
+  border-color: var(--acento);
+}
+
+.btn-accesibilidad[aria-pressed="true"] {
+  color: var(--texto);
+  border-color: var(--acento);
+  background: rgba(212, 165, 116, 0.18);
+}
+
+.btn-accesibilidad-float {
+  position: fixed;
+  right: 16px;
+  bottom: 20px;
+  z-index: 999;
+  padding: 10px 14px;
+  border: 1px solid rgba(10, 10, 11, 0.2);
+  border-radius: 999px;
+  background: var(--acento);
+  color: var(--negro);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(10, 10, 11, 0.2);
+  transition: transform var(--transicion), box-shadow var(--transicion), opacity var(--transicion);
+}
+
+.btn-accesibilidad-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(10, 10, 11, 0.24);
+}
+
+.btn-accesibilidad-float[aria-pressed="true"] {
+  background: var(--negro);
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+body.accesibilidad-on {
+  background-color: #080808 !important;
+  color: #ffd84d !important;
+}
+
+body.accesibilidad-on,
+body.accesibilidad-on * {
+  text-transform: uppercase !important;
+}
+
+body.accesibilidad-on p,
+body.accesibilidad-on h1,
+body.accesibilidad-on h2,
+body.accesibilidad-on h3,
+body.accesibilidad-on h4,
+body.accesibilidad-on h5,
+body.accesibilidad-on h6,
+body.accesibilidad-on span,
+body.accesibilidad-on li,
+body.accesibilidad-on small,
+body.accesibilidad-on label,
+body.accesibilidad-on blockquote,
+body.accesibilidad-on input,
+body.accesibilidad-on textarea,
+body.accesibilidad-on select,
+body.accesibilidad-on button,
+body.accesibilidad-on a {
+  color: #ffd84d !important;
+}
+
+body.accesibilidad-on a {
+  text-decoration-color: #ffd84d !important;
+}
+
+body.accesibilidad-on .cabecera,
+body.accesibilidad-on .menu {
+  background: rgba(8, 8, 8, 0.95) !important;
+  border-color: rgba(255, 216, 77, 0.35) !important;
+}
+
+body.accesibilidad-on .btn-accesibilidad {
+  color: #ffd84d !important;
+  border-color: #ffd84d !important;
+}
+
+body.accesibilidad-on .btn-accesibilidad-float {
+  color: #080808 !important;
+  background: #ffd84d !important;
+  border-color: #ffd84d !important;
+}
+
+/* en modo accesibilidad las 3 rayitas de la hamburguesa eran negras y no se veian
+   sobre el fondo oscuro, asi que las pongo en amarillo igual que el resto */
+body.accesibilidad-on .menu-toggle span {
+  background: #ffd84d !important;
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .cabecera {
+    padding: 0 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu {
+    position: absolute;
+    top: var(--alto-cabecera);
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 20px 20px;
+    background: rgba(250, 250, 250, 0.98);
+    border-bottom: 1px solid var(--borde);
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.28s ease;
+  }
+
+  .menu.menu-abierto {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 340px;
+    pointer-events: auto;
+  }
+
+  .menu a {
+    font-size: 14px;
+  }
+
+  .btn-accesibilidad {
+    font-size: 13px;
+    width: fit-content;
+  }
+
+  .btn-accesibilidad-float {
+    right: 14px;
+    bottom: 16px;
+    font-size: 12px;
+    padding: 9px 12px;
+  }
+}
+/* Móviles muy estrechos (≤540px): el título del logo un poco más pequeño
+   (20px → 18px) para que quepa bien junto al menú hamburguesa. */
+@media (max-width: 540px) {
+  .logo h2 {
+    font-size: 18px;
+  }
+
+  .menu {
+    gap: 12px;
+    padding: 14px 16px 18px;
+  }
+}
+
+/* enlace "Volver a la web" solo en panel admin (body.pagina-admin) */
+li.solo-en-admin {
+  display: none;
+}
+
+body.pagina-admin li.solo-en-admin {
+  display: list-item;
+}

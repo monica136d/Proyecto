@@ -1,0 +1,77 @@
+==========================================================
+DATOS DE PRUEBA PARA AÑADIR MENUS DURANTE LA PRESENTACION
+==========================================================
+
+Estos datos estan listos para copiar y pegar en el formulario
+de "Menus" del panel de administracion (admin.html).
+
+Antes de empezar:
+  1. Inicia sesion con el usuario administrador.
+  2. En el panel, pulsa la pestaña "Menus".
+  3. Rellena los campos con los valores de cada menu.
+  4. Pulsa "Guardar menu".
+
+
+==========================================================
+MENU 1 - Primavera Renacer
+==========================================================
+Nombre:      Primavera Renacer
+Temporada:   primavera
+Ruta imagen: assets/primavera.png
+Plato:       (elige cualquiera del desplegable)
+Vino:        (elige cualquiera del desplegable)
+
+
+==========================================================
+MENU 2 - Otoño Tradicional
+==========================================================
+Nombre:      Otoño Tradicional
+Temporada:   otoño
+Ruta imagen: assets/otoño.png
+Plato:       (elige cualquiera del desplegable)
+Vino:        (elige cualquiera del desplegable)
+
+
+==========================================================
+MENU 3 - Invierno de Sabores
+==========================================================
+Nombre:      Invierno de Sabores
+Temporada:   invierno
+Ruta imagen: assets/invierno.png
+Plato:       (elige cualquiera del desplegable)
+Vino:        (elige cualquiera del desplegable)
+
+
+==========================================================
+GUION RAPIDO PARA LA DEMO
+==========================================================
+
+1. AÑADIR un menu:
+   - Pestaña "Menus" -> rellenar formulario con datos de arriba
+   - Pulsar "Guardar menu"
+   - Comprobar que aparece en la tabla de abajo
+   - Comprobar que aparece tambien en menus.html (pagina publica)
+
+2. EDITAR un menu:
+   - Pulsar el icono del lapiz en una fila de la tabla
+   - Cambiar el nombre o la temporada
+   - Pulsar "Guardar cambios"
+   - Comprobar que el cambio aparece reflejado
+
+3. BORRAR un menu:
+   - Pulsar el icono de la papelera en una fila
+   - Confirmar el aviso
+   - Comprobar que ya no aparece en la tabla
+
+4. RESERVA con menu nuevo:
+   - Cerrar sesion como admin
+   - Iniciar sesion como un usuario normal (o registrarse)
+   - Ir a "Reserva tu mesa"
+   - Comprobar que el menu nuevo aparece en el desplegable
+
+NOTAS:
+  - Si la imagen no carga, comprueba que existe el archivo
+    en c:\wamp64\www\Proyecto\assets\
+  - El admin nunca aparece en la lista de usuarios normales.
+  - Las reservas de prueba se pueden borrar despues desde
+    la pestaña "Reservas".

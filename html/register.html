@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/toast.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <title>Registro — Ceniza &amp; Oro</title>
+
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+</head>
+<body>
+    <!-- header compartido -->
+    <div id="header"></div>
+
+    <!-- formulario para registrar un usuario nuevo -->
+    <main class="container">
+        <div class="card">
+            <form action="../php/register.php" method="POST">
+                <h2 class="login">Registrarse</h2>
+
+                <!-- email -->
+                <div class="inputBox">
+                    <input type="email" name="email" id="email" required="required">
+                    <span>Email</span>
+                </div>
+
+                <!-- nombre de usuario para iniciar sesion -->
+                <div class="inputBox">
+                    <input type="text" name="usuario" id="usuario" required="required">
+                    <span>Nombre de usuario</span>
+                </div>
+
+                <!-- contraseña -->
+                <div class="inputBox">
+                    <input type="password" name="password" id="password" required="required">
+                    <span>Contraseña</span>
+                </div>
+
+                <!-- repetir contraseña (el php comprueba que sean iguales) -->
+                <div class="inputBox">
+                    <input type="password" name="password2" id="password2" required="required">
+                    <span>Repetir contraseña</span>
+                </div>
+
+                <div id="btn">
+                    <a class="enter" href="login.html">LOGIN</a>
+                    <button type="submit" class="enter">Registrarse</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- footer compartido -->
+    <div id="footer"></div>
+
+</body>
+</html>
